@@ -1,0 +1,45 @@
+body {
+    padding-top: 5rem;
+}
+body {
+padding-top:50px;
+border-color:#dcddef;
+background-color:#d5ecf2; 
+}
+h1
+{
+    margin-left: 270px;
+    margin-right:270px;
+    padding-top:50px;
+}
+.form-group
+{
+    padding:30px;
+    margin-left: 270px;
+    margin-right:270px;
+    padding-top: 50px;
+    padding-bottom:50px;
+    border-top-color: #167bf7;
+    background-color: white;
+}
+#border
+{
+    background-color: #167bf7;
+    padding:2px;
+    margin-left: 270px;
+    margin-right:270px;
+    border-top-right-radius:1%;
+    border-top-left-radius: 1%;
+}
+input[type=text]
+{
+    width: 50%;
+}
+input[type=textarea]
+{
+    width:50%;
+}
+#bib
+{
+    height:50%;
+}

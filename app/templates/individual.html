@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+<link rel="stylesheet"href='app.css'> 
+
+{% block main %}
+<div>
+    <img src="{{url_for('static', filename='uploads/'+user.picture)}}"/>
+            <span>{{user.FirstName+" "+user.LastName}}</span>
+            <span>{{user.Email}}</span>
+            <span>{{user.Location}}</span>
+            <span>Joined on {{user.created_on}}</span>
+</div>
+<div class=card>
+        <h5 class"card-title">About me</h5>
+        <p calss="card-text">{{ user.bio }}</p>
+        
+            <a href="#" class="center col-md-6 btn btn-success">Send messaage</a>
+            <a href="#" class="center col-md-6 btn btn-primary">Follow</a>
+</div>
+{% endblock %}
