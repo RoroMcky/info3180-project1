@@ -1,16 +1,28 @@
-{% extends "base.html" %}
+{%extends 'base.html'%}
 
-{% block main %}
-    {% include 'flash_messages.html' %}
+{%block main%}
+<h1 id='h'>Profiles</h1>
+<link rel="stylesheet"href='app.css'> 
+
+{%for user in users%}
+<div id='borders'>
     
-    <h1>Profiles</h1>
-    {% for user in users %}
-        <div>
-            <img src="{{ url_for('static', filename = 'uploads/' + user.photo_name) }}" />
-            {{ user.FirstName }} {{ user.LastName }}
-            {{ user.Gender }}
-            {{ user.Location }}
-            <button id="viewBtn" type="submit" onclick="{{ return redirect('/profile/user.get_id() }}>Individual</button>
-        </div>
-    {% endfor %}
-{% endblock %}
+</div>
+<div class='all'>
+<div class='form'>
+     <img src="{{url_for('static', filename='uploads/'+user.picture)}}" height="110" width="110"/>
+     <br>
+     <div class="words">
+        {{ user['FirstName'] }} {{ user['LastName'] }}
+        <br>
+        {{ user['Gender'] }}
+        <br>
+        {{ user['Location'] }}
+    </div>
+</div>
+<div class='inputs'>
+ <a class="button" href="{{ url_for('individual', userid=user['id'])}}"class='inputs'>View profile</a>
+</div>
+</div>
+{%endfor%}
+{%endblock%}

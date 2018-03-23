@@ -14,13 +14,86 @@ h1
 }
 .form-group
 {
-    padding:30px;
+    padding:50px;
     margin-left: 270px;
     margin-right:270px;
     padding-top: 50px;
     padding-bottom:50px;
     border-top-color: #167bf7;
     background-color: white;
+}
+#left
+{
+    float:left;
+     margin-right:60%;
+     margin-left:150px;
+}
+#right
+{
+    float:right;
+    margin-left:72%;
+}
+.words
+{
+    margin-left:300;
+    margin-right: 300;
+    padding-left:100px;
+    
+}
+#h
+{
+    margin-left: 200px;
+    margin-right:200px; 
+}
+.card
+{
+   margin-left: 200px;
+    margin-right:200px
+    
+}
+.all
+{
+    padding:30px;
+    margin-left: 200px;
+    margin-right:200px;
+    padding-top: 20px;
+    padding-bottom:50px;
+    border-top-color: #167bf7;
+    background-color: white;
+    border-bottom-right-radius:2%;
+    border-bottom-left-radius: 2%; 
+    font-family:helvetica;  
+}
+.form
+{
+    color:grey;
+    border-left-width: thin;
+    text-align: justify;
+    
+}
+.inputs
+{
+    float: right;
+    padding-top: 0px;
+    padding:5px;
+    background-color: #9bf442;
+    border-bottom-right-radius:2%;
+    border-bottom-left-radius: 2%;
+    
+}
+img
+{
+    float:left;
+}
+#borders
+{
+    background-color: #167bf7;
+    padding:2px;
+    margin-left: 200px;
+    margin-right:200px;
+    border-top-right-radius:2%;
+    border-top-left-radius: 2%;  
+    border-radius: 4%;
 }
 #border
 {
@@ -30,6 +103,14 @@ h1
     margin-right:270px;
     border-top-right-radius:1%;
     border-top-left-radius: 1%;
+}
+btn-success
+{
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+    
+    
 }
 input[type=text]
 {

@@ -3,18 +3,27 @@
 <link rel="stylesheet"href='app.css'> 
 
 {% block main %}
-<div>
-    <img src="{{url_for('static', filename='uploads/'+user.picture)}}"/>
+<div id='border'></div>
+<div class="all">
+    <div class='form'>
+    <img src="{{ url_for('static', filename='uploads/'+user.picture) }}" height="120" width="120"/>
+    <br
             <span>{{user.FirstName+" "+user.LastName}}</span>
+            <br>
             <span>{{user.Email}}</span>
+            <br>
             <span>{{user.Location}}</span>
+            <br>
             <span>Joined on {{user.created_on}}</span>
+    </div>
 </div>
+
 <div class=card>
         <h5 class"card-title">About me</h5>
-        <p calss="card-text">{{ user.bio }}</p>
+        <p calss="card-text">{{ user.Biography}}</p>
+
+<div id='left'>
         
-            <a href="#" class="center col-md-6 btn btn-success">Send messaage</a>
-            <a href="#" class="center col-md-6 btn btn-primary">Follow</a>
+<a href="#" class="center col-md-6 btn btn-success">Send messaage</a></div><div id="right"><a href="#" class="center col-md-6 btn btn-primary">Follow</a></div>
 </div>
 {% endblock %}

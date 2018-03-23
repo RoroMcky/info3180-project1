@@ -7,6 +7,7 @@ This file creates your application.
 
 from app import app, db
 from flask import render_template, request, redirect, url_for, flash
+from flask_login import login_user, logout_user, current_user, login_required
 from forms import ProfileForm
 from models import UserProfile
 from werkzeug.utils import secure_filename
@@ -14,9 +15,48 @@ from models import UserProfile
 import os
 import datetime
 
+
 ###
 # Routing for your application.
 ###
+
+@app.route('/profile', methods=["POST", "GET"])
+def profile():
+        form = ProfileForm()
+        print form.errors.items()
+        uFolder = app.config['UPLOAD_FOLDER']
+        if request.method == "POST" and form.validate_on_submit():
+            f_name = request.form['FirstName']
+            l_name = request.form['LastName']
+            gender = request.form['Gender']
+            email = request.form['Email']
+            location = request.form['Location']
+            bio = request.form['Biography']
+            now = datetime.datetime.now()
+            joined = "" + format_date_joined(now.year, now.month, now.day)
+            img=request.files['picture']
+            img_name= secure_filename(img.filename)
+            img.save(os.path.join(uFolder,img_name))
+            #user = UserProfile(f_name, l_name, gender, email, location, bio, img_name, joined)
+            db.session.add(user)
+            db.session.commit()
+            flash('Profile was sucessfully added.', 'success')
+            return redirect(url_for('profiles'))
+        elif request.method == "POST":
+            flash('Username or Password is incorrect.', 'danger')
+        return render_template('profile.html', form=form)
+        
+@app.route('/profiles', methods=['GET', 'POST'])
+def profiles():
+    users=db.session.query(UserProfile).all()
+    return render_template('profiles.html', users=users)
+    
+@app.route('/profiles/<userid>', methods=["GET", "POST"])
+def individual(userid):
+    userid = str(userid)
+    user = UserProfile.query.filter_by(id=userid).first()
+    return render_template('individual.html', user=user)
+    
 @app.route('/')
 def home():
     """Render website's home page."""
@@ -28,51 +68,25 @@ def about():
     """Render the website's about page."""
     return render_template('about.html')
 
-@app.route('/profile')
-def profile():
-    import datetime
-    form = ProfileForm()
-    uFolder = app.config['UPLOAD_FOLDER']
-    
-    if request.method == "POST" and form.validate_on_submit():
-        FirstName = request.form['FirstName']
-        LastName = request.form['LastName']
-        Gender = request.form['Gender']
-        Email = request.form['Email']
-        Location = request.form['Location']
-        Biography = request.form['Biography']
-        created_on = str(datetime.datetime.now()).split()[0]
-        
-        image_file = request.files['photo']
-        filename = secure_filename(image_file.filename)
-        image_file.save(os.path.join(uFolder, filename))
-        user = UserProfile(FirstName, LastName, Gender, Email, Location, Biography, filename, created_on)
-        
-        db.session.add(user)
-        db.session.commit()
-        
-        flash('Profile was sucessfully added!', 'sucess')
-        return redirect('/profiles')
-    return render_template('profile.html', form=form) 
-    
-@app.route('/profiles')
-def profiles():
-    users = db.session.query(UserProfile).all()
-    return render_template('profiles.html', users=users)
-    
-@app.route('/profile/<userid>')
-def showProfile(userid):
-    user = UserProfile.query.filter_by(id=userid).first()
-    
-    return render_template('profiles.html', user)
-    
+
+# user_loader callback. This callback is used to reload the user object from
+# the user ID stored in the session
+
 
 @app.route('/<file_name>.txt')
 def send_text_file(file_name):
     """Send your static text file."""
     file_dot_text = file_name + '.txt'
     return app.send_static_file(file_dot_text)
-
+@app.route("/logout")
+def logout():
+    logout_user()
+    flash('You have been logged out.', 'danger')
+    return redirect(url_for('home'))
+    
+def format_date_joined(year, month, day):
+    date_joined = datetime.date(year, month, day)
+    return date_joined.strftime("%B %d, %Y")   
 
 @app.after_request
 def add_header(response):
