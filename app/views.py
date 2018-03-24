@@ -20,31 +20,35 @@ import datetime
 # Routing for your application.
 ###
 
-@app.route('/profile', methods=["POST", "GET"])
+@app.route('/profile/', methods=["POST", "GET"])
 def profile():
         form = ProfileForm()
         print form.errors.items()
         uFolder = app.config['UPLOAD_FOLDER']
-        if request.method == "POST" and form.validate_on_submit():
-            f_name = request.form['FirstName']
-            l_name = request.form['LastName']
-            gender = request.form['Gender']
-            email = request.form['Email']
-            location = request.form['Location']
-            bio = request.form['Biography']
-            now = datetime.datetime.now()
-            joined = "" + format_date_joined(now.year, now.month, now.day)
-            img=request.files['picture']
-            img_name= secure_filename(img.filename)
-            img.save(os.path.join(uFolder,img_name))
-            #user = UserProfile(f_name, l_name, gender, email, location, bio, img_name, joined)
-            db.session.add(user)
-            db.session.commit()
-            flash('Profile was sucessfully added.', 'success')
-            return redirect(url_for('profiles'))
-        elif request.method == "POST":
-            flash('Username or Password is incorrect.', 'danger')
-        return render_template('profile.html', form=form)
+        if request.method == "POST":
+            if form.validate_on_submit():
+                f_name = request.form['FirstName']
+                l_name = request.form['LastName']
+                gender = request.form['Gender']
+                email = request.form['Email']
+                location = request.form['Location']
+                bio = request.form['Biography']
+                now = datetime.datetime.now()
+                joined = "" + format_date_joined(now.year, now.month, now.day)
+                img=request.files['picture']
+                img_name= secure_filename(img.filename)
+                img.save(os.path.join(uFolder,img_name))
+                user = UserProfile(f_name, l_name, gender, email, location, bio, joined, img_name)
+                
+                db.session.add(user)
+                db.session.commit()
+                flash('Profile was sucessfully added.', 'success')
+                return redirect(url_for('profiles'))
+            
+            flash(form.errors.items(), 'danger')
+            return render_template('profile.html', form=form)
+            
+        return render_template('profile.html', form=form) 
         
 @app.route('/profiles', methods=['GET', 'POST'])
 def profiles():
