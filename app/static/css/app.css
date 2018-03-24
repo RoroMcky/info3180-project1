@@ -22,13 +22,14 @@ h1
     border-top-color: #167bf7;
     background-color: white;
     font-family:helvetica; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 #left
 {
     float:left;
-     margin-right:60%;
-     margin-left:150px;
+    position:fixed;
 }
+
 #right
 {
     float:right;
@@ -61,15 +62,35 @@ h1
     padding-bottom:50px;
     border-top-color: #167bf7;
     background-color: white;
-    border-bottom-right-radius:2%;
-    border-bottom-left-radius: 2%; 
+    border-bottom-right-radius:5%;
+    border-bottom-left-radius: 5%; 
     font-family:helvetica;  
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+btn
+{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#name
+{
+    font-weight: bold;
+    padding:0px;
 }
 .form
 {
     color:grey;
     border-left-width: thin;
     text-align: justify;
+    padding:0px;
+    
+}
+.formed
+{
+    color:grey;
+    border-left-width: thin;
+    text-align: justify;
+    padding:0px;
+    
     
 }
 .inputs
@@ -78,8 +99,9 @@ h1
     padding-top: 0px;
     padding:5px;
     background-color: #9bf442;
-    border-bottom-right-radius:2%;
-    border-bottom-left-radius: 2%;
+    border-bottom-right-radius:5%;
+    border-bottom-left-radius: 5%;
+  
     
 }
 img
@@ -94,14 +116,14 @@ img
     margin-right:200px;
     border-top-right-radius:2%;
     border-top-left-radius: 2%;  
-    border-radius: 4%;
+    border-radius: 6%;
 }
 #border
 {
     background-color: #167bf7;
     padding:2px;
-    margin-left: 270px;
-    margin-right:270px;
+    margin-left: 200px;
+    margin-right:200px;
     border-top-right-radius:1%;
     border-top-left-radius: 1%;
 }

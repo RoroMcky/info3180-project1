@@ -3,27 +3,36 @@
 <link rel="stylesheet"href='app.css'> 
 
 {% block main %}
+<head><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></head>
+<div id='space'><br><br></div>
 <div id='border'></div>
 <div class="all">
-    <div class='form'>
-    <img src="{{ url_for('static', filename='uploads/'+user.picture) }}" height="120" width="120"/>
+    <div class='formed'>
+    <img src="{{ url_for('static', filename='uploads/'+user.picture) }}" height="200" width="200"/>
     <br
             <span>{{user.FirstName+" "+user.LastName}}</span>
             <br>
+            <i class="material-icons">mailoutline</i>
             <span>{{user.Email}}</span>
             <br>
+            <i class="material-icons">place</i>
             <span>{{user.Location}}</span>
             <br>
             <span>Joined on {{user.created_on}}</span>
+            <i class="material-icons">event</i>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h5 class"card-title">About me</h5>
+        <p calss="card-text">{{ user.Biography}}</p>
+
+<div id='left'><a href="#" class="center col-md-6 btn btn-success">Send messaage</a></div>
+<div id="right"><a href="#" class="center col-md-6 btn btn-primary">Follow</a></div>
     </div>
 </div>
 
-<div class=card>
-        <h5 class"card-title">About me</h5>
-        <p calss="card-text">{{ user.Biography}}</p>
-
-<div id='left'>
+<div class='card'>
         
-<a href="#" class="center col-md-6 btn btn-success">Send messaage</a></div><div id="right"><a href="#" class="center col-md-6 btn btn-primary">Follow</a></div>
 </div>
 {% endblock %}

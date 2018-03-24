@@ -1,6 +1,7 @@
 {%extends 'base.html'%}
 
 {%block main%}
+<head><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></head>
 <h1 id='h'>Profiles</h1>
 <link rel="stylesheet"href='app.css'> 
 
@@ -10,19 +11,26 @@
 </div>
 <div class='all'>
 <div class='form'>
-     <img src="{{url_for('static', filename='uploads/'+user.picture)}}" height="110" width="110"/>
+     <img src="{{url_for('static', filename='uploads/'+user.picture)}}" height="150" width="150"/>
      <br>
      <div class="words">
-        {{ user['FirstName'] }} {{ user['LastName'] }}
+       <div id="name">
+       {{ user['FirstName'] }} {{ user['LastName'] }}
+       </div>
         <br>
+        <i class="material-icons">person</i>
         {{ user['Gender'] }}
+        
         <br>
+        <i class="material-icons">place</i>
         {{ user['Location'] }}
+        
     </div>
 </div>
 <div class='inputs'>
- <a class="button" href="{{ url_for('individual', userid=user['id'])}}"class='inputs'>View profile</a>
+ <a class="button" href="{{ url_for('individual', userid=user['id'])}}"style="background-color: #98f442; color: white;">View profile</a>
 </div>
 </div>
+<div id='ntn'><br><br></div>
 {%endfor%}
 {%endblock%}
