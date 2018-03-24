@@ -23,6 +23,7 @@ import datetime
 @app.route('/profile/', methods=["POST", "GET"])
 def profile():
         form = ProfileForm()
+        print form.errors.items()
         uFolder = app.config['UPLOAD_FOLDER']
         if request.method == "POST":
             if form.validate_on_submit():
