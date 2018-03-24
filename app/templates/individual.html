@@ -9,26 +9,32 @@
 <div class="all">
     <div class='formed'>
     <img src="{{ url_for('static', filename='uploads/'+user.picture) }}" height="200" width="200"/>
-    <br
-            <span>{{user.FirstName+" "+user.LastName}}</span>
+    <br>
+            <div id='space'>
+                {{user.FirstName+" "+user.LastName}}
+                </div>
+                <br>
+                <i class="material-icons" id="pics">mailoutline</i>
+                <div class='info'>{{ user.Email }}</div>
+                <br>
+                <br>
+                <i class="material-icons" id="pics">place</i>
+                <div class='info'>{{user.Location}}</div>
+                <br>
+                <br>
+                <i class="material-icons" id="pics">event</i>
+                <div class='info'>Joined on {{user.created_on}}</div>
+            </div>
             <br>
-            <i class="material-icons">mailoutline</i>
-            <span>{{user.Email}}</span>
             <br>
-            <i class="material-icons">place</i>
-            <span>{{user.Location}}</span>
-            <br>
-            <span>Joined on {{user.created_on}}</span>
-            <i class="material-icons">event</i>
-            <br>
-            <br>
-            <br>
-            <br>
-            <h5 class"card-title">About me</h5>
-        <p calss="card-text">{{ user.Biography}}</p>
-
-<div id='left'><a href="#" class="center col-md-6 btn btn-success">Send messaage</a></div>
-<div id="right"><a href="#" class="center col-md-6 btn btn-primary">Follow</a></div>
+            <div id="bio">
+                <h5 class"card-title">About me</h5>
+                <p calss="card-text">{{ user.Biography}}</p>
+            </div>
+<div id='container'
+<button class="btn btn-success" id="left">Send messaage</a></div>
+<button class="btn btn-primary" id="right">Follow</a></div>
+</div>
     </div>
 </div>
 
