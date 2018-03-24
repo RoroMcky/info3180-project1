@@ -11,19 +11,19 @@
 </div>
 <div class='all'>
 <div class='form'>
-     <img src="{{url_for('static', filename='uploads/'+user.picture)}}" height="150" width="150"/>
+     <img src="{{url_for('static', filename='uploads/'+user.picture)}}" height="140" width="140"/>
      <br>
      <div class="words">
        <div id="name">
        {{ user['FirstName'] }} {{ user['LastName'] }}
        </div>
         <br>
-        <i class="material-icons">person</i>
-        {{ user['Gender'] }}
+        <i class="material-icons" id='pics'>person</i>
+        <div class='info'>{{ user['Gender'] }}</div>
         
         <br>
-        <i class="material-icons">place</i>
-        {{ user['Location'] }}
+        <i class="material-icons" id='pics'>place</i>
+        <div class='info'>{{ user['Location'] }}</div>
         
     </div>
 </div>
@@ -31,6 +31,6 @@
  <a class="button" href="{{ url_for('individual', userid=user['id'])}}"style="background-color: #98f442; color: white;">View profile</a>
 </div>
 </div>
-<div id='ntn'><br><br></div>
+<div id='ntn'><br></div>
 {%endfor%}
 {%endblock%}
